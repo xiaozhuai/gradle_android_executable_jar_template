@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'net.xiaozhuai'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Manifest-Version': 1.0,
+                'Main-Class': 'net.xiaozhuai.Main'
+        )
+    }
+    archiveName = project.name + '.jar'
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+task buildAndroidExecutableJar(type: Exec) {
+    workingDir project.projectDir
+    commandLine './to_android_jar.sh', project.name + '.jar'
+}
+
+build.finalizedBy(buildAndroidExecutableJar)
+
+dependencies {
+//    compile "mysql:mysql-connector-java:5.1.6"
+}
