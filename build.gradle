@@ -29,7 +29,7 @@ jar {
 
 task buildAndroidExecutableJar(type: Exec) {
     workingDir project.projectDir
-    commandLine './to_android_jar.sh', project.name + '.jar'
+    commandLine './build_android_jar.sh', project.name + '.jar'
 }
 
 build.finalizedBy(buildAndroidExecutableJar)

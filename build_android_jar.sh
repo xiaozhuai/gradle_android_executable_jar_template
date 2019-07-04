@@ -21,11 +21,15 @@ outputDir=build/android
 outputDex=${outputDir}/classes.dex
 outputJar=${outputDir}/$1
 
+if [[ ! -f ${inputJar} ]]; then
+    echo "${inputJar} not found"
+    exit 1
+fi
+
 rm -f ${outputDex} ${outputJar}
 mkdir -p ${outputDir}
 
 ${dxExecutable} --dex --output=${outputDex} ${inputJar}
-
 
 cd ${outputDir}
 ${aaptExecutable} add $1 classes.dex
