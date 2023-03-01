@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 androidSdkRoot="${ANDROID_SDK_ROOT}"
 if [[ "${androidSdkRoot}" == "" ]]; then
@@ -9,7 +10,7 @@ if [[ "${androidSdkRoot}" == "" ]]; then
     exit 1
 fi
 
-buildToolsVersion=$(ls -tr "${androidSdkRoot}/build-tools/" | tail -1)
+buildToolsVersion="30.0.3"
 
 buildToolsRoot="${androidSdkRoot}/build-tools/${buildToolsVersion}"
 
